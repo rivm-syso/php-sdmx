@@ -50,7 +50,7 @@ class RestSdmxV21ClientTest extends TestCase
      */
     private $dataParser;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->queryBuilderMock = $this->getMockBuilder(SdmxQueryBuilder::class)
             ->getMock();

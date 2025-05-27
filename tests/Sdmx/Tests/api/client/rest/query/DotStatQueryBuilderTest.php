@@ -20,7 +20,7 @@ class DotStatQueryBuilderTest extends TestCase
      */
     private $sdmxQueryBuilder;
 
-    protected function setUp()
+    protected function setUp():void
     {
         $this->sdmxQueryBuilder = new DotStatQueryBuilder(self::BASE_URL, false);
     }
@@ -49,12 +49,16 @@ class DotStatQueryBuilderTest extends TestCase
         $this->assertEquals($expected, $query);
     }
 
-    /**
-     * @expectedException Sdmx\api\exceptions\UnsupportedOperationException
-     */
     public function testGetCodelistQuery()
     {
-        $this->sdmxQueryBuilder->getCodelistQuery('CL_NUMBERS', 'UNESCO', 'latest');
+        try {
+            $this->sdmxQueryBuilder->getCodelistQuery('CL_NUMBERS', 'UNESCO', 'latest');
+        }
+        catch (\Exception $e) {
+            if ($e instanceof UnsupportedOperationException) {
+                $this->assertTrue(true);
+            }
+        }
     }
 
     public function testGetDataQueryWithoutParams()

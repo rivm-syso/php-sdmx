@@ -153,7 +153,7 @@ XML;
         $this->assertEmpty($result);
     }
 
-    protected function setUp()
+    protected function setUp():void
     {
         $this->parser = new V21DataParser();
     }

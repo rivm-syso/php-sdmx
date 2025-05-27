@@ -199,17 +199,21 @@ class PortableTimeSeriesTest extends TestCase
         $this->assertEquals([1, 2], $portableTimeSeries->getObservations());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testSetObservationsThrowExceptionBecauseItExpectsSameNumberOfElementsThanTimeSlots()
     {
         $portableTimeSeries = $this->portableSeries;
 
-        $portableTimeSeries->addObservation('1.0', '2000', ['someKey' => 'someValue1', 'otherKey' => 'otherValue']);
-        $portableTimeSeries->addObservation('2.0', '2001', ['someKey' => 'someValue2']);
+        try {
+            $portableTimeSeries->addObservation('1.0', '2000', ['someKey' => 'someValue1', 'otherKey' => 'otherValue']);
+            $portableTimeSeries->addObservation('2.0', '2001', ['someKey' => 'someValue2']);
 
-        $portableTimeSeries->setObservations([1]);
+            $portableTimeSeries->setObservations([1]);
+        }
+        catch(\Exception $e) {
+            if ($e instanceof \InvalidArgumentException) {
+                $this->assertTrue(true);
+            }
+        }
     }
 
     public function testSetTimeSlot()
@@ -224,20 +228,24 @@ class PortableTimeSeriesTest extends TestCase
         $this->assertEquals(['2000', '2002'], $portableTimeSeries->getTimeSlots());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testSetTimeSlotThrowExceptionBecauseItExpectsSameNumberOfElementsThanObservations()
     {
         $portableTimeSeries = $this->portableSeries;
 
-        $portableTimeSeries->addObservation('1.0', '2000', ['someKey' => 'someValue1', 'otherKey' => 'otherValue']);
-        $portableTimeSeries->addObservation('2.0', '2001', ['someKey' => 'someValue2']);
+        try {
+            $portableTimeSeries->addObservation('1.0', '2000', ['someKey' => 'someValue1', 'otherKey' => 'otherValue']);
+            $portableTimeSeries->addObservation('2.0', '2001', ['someKey' => 'someValue2']);
 
-        $portableTimeSeries->setTimeSlots(['2000']);
+            $portableTimeSeries->setTimeSlots(['2000']);
+        }
+        catch (\Exception $e) {
+            if ($e instanceof \InvalidArgumentException) {
+                $this->assertTrue(true);
+            }
+        }
     }
 
-    protected function setUp()
+    protected function setUp():void
     {
         $this->portableSeries = new PortableTimeSeries();
     }

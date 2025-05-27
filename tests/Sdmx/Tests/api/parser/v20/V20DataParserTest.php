@@ -72,7 +72,7 @@ class V20DataParserTest extends TestCase
         $this->assertEquals(['2014', '2015', '2016'], $line->getTimeSlots());
     }
 
-    protected function setUp()
+    protected function setUp():void
     {
         $this->parser = new V20DataParser();
         $this->structureParser = new V20DataStructureParser(new V20CodelistParser());

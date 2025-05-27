@@ -18,7 +18,7 @@ class SdmxRestQueryBuilderTest extends TestCase
      */
     private $sdmxQueryBuilder;
 
-    protected function setUp()
+    protected function setUp():void
     {
         $this->sdmxQueryBuilder = new SdmxRestQueryBuilder(self::BASE_URL);
     }

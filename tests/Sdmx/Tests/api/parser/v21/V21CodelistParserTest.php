@@ -34,7 +34,7 @@ class V21CodelistParserTest extends TestCase
         $this->assertSame('Fifteen', $codelist['15']);
     }
 
-    protected function setUp()
+    protected function setUp():void
     {
         $this->codelistParser = new V21CodelistParser();
     }

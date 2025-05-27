@@ -17,7 +17,7 @@ class V20CodelistParserTest extends TestCase
      */
     private $parser;
 
-    protected function setUp()
+    protected function setUp():void
     {
         $this->parser = new V20CodelistParser();
     }

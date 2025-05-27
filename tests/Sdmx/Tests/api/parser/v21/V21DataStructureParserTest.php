@@ -63,7 +63,7 @@ class V21DataStructureParserTest extends TestCase
         $this->checkRefCodes($dimensions);
     }
 
-    protected function setUp()
+    protected function setUp():void
     {
         $this->parser = new V21DataStructureParser(new V21CodelistParser());
     }

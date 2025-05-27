@@ -63,7 +63,7 @@ class V21DataflowParserTest extends TestCase
 
     }
 
-    protected function setUp()
+    protected function setUp():void
     {
         $this->parser = new V21DataflowParser();
     }

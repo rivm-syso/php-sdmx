@@ -1,21 +1,25 @@
 {
-  "name": "juangabreil/php-sdmx",
+  "name": "rivm-syso/php-sdmx",
   "description": "Library to query sdmx rest apis.",
-  "homepage": "http://github.com/juangabreil/php-sdmx",
+  "homepage": "http://github.com/rivm-syso/php-sdmx",
   "license": "MIT",
   "keywords": ["sdmx", "rest"],
   "authors": [
     {
       "name": "Juan Gabriel Jimenez Campos",
       "email": "juangabreil@gmail.com"
+    },
+    {
+      "name": "Patrick Kannekens",
+      "email": "patrick.kannekens@rivm.nl"
     }
   ],
   "require": {
-    "php": ">=5.6",
-    "rmccue/requests": "v1.7.0"
+    "php": ">=8.3",
+    "rmccue/requests": "^2"
   },
   "require-dev": {
-    "phpunit/phpunit": "5.7.13"
+    "phpunit/phpunit": "^9.5"
   },
   "type": "library",
   "autoload": {

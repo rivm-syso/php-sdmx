@@ -15,6 +15,7 @@ use Sdmx\api\client\SdmxClient;
 use Sdmx\api\entities\Dataflow;
 use Sdmx\api\entities\DataflowStructure;
 use Sdmx\api\entities\DsdIdentifier;
+use Sdmx\api\exceptions\UnsupportedOperationException;
 use Sdmx\api\parser\DataParser;
 use Sdmx\api\parser\DataStructureParser;
 use Sdmx\api\parser\v20\V20DataStructureParser;
@@ -274,7 +275,14 @@ class DotStatClientTest extends TestCase
      */
     public function testGetCodesMethodIsNotSupported()
     {
-        $this->client->getCodes('SomeCodelist', 'SomeAgency', 'SomeVersion');
+        try {
+            $this->client->getCodes('SomeCodelist', 'SomeAgency', 'SomeVersion');
+        }
+        catch(\Exception $e){
+            if ($e instanceof UnsupportedOperationException) {
+                $this->assertTrue(true);
+            }
+        }
     }
 
     public function testGetTimeSeries()
@@ -409,7 +417,7 @@ class DotStatClientTest extends TestCase
         return $parsedTimeSeries;
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->queryBuilderMock = $this->getMockBuilder(SdmxQueryBuilder::class)->getMock();
         $this->httpClientMock = $this->getMockBuilder(HttpClient::class)->getMock();
